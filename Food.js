@@ -9,7 +9,8 @@ class Food {
     this.foodStock=foodStock;
    }
 
-   getFedTime(lastFed){
+   getFedTime(lastFed)
+   {
      this.lastFed=lastFed;
    }
 

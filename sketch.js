@@ -54,19 +54,20 @@ function draw() {
   fill("red");
   noStroke();
   textSize(20);
-  if(lastFed >= 12)
+  foodObj.getFedTime(hour());
+  if(foodObj.lastFed >= 12)
   {
-    text(hour + "PM", 210, 20);
+    text(foodObj.lastFed + "PM", 210, 20);
   }
-  else if(lastFed === 0)
+  else if(foodObj.lastFed === 0)
   {
-    text(hour + "MIDNIGHT", 210, 20);
+    text(foodObj.lastFed + "MIDNIGHT", 210, 20);
   }
   else
   {
-    text(hour + "AM", 210, 20);
+    text(foodObj.lastFed + "AM", 210, 20);
   }
- 
+
   drawSprites();
 }
 
@@ -82,14 +83,14 @@ function feedDog(){
 
   //write code here to update food stock and last fed time
   foodS--;
-  hour();
   database.ref('/').update
   (
   {
-    Food:foodS
+    Food:foodS,
+    feedTime: hour()
   }
   );
-  feedTime.update(hour());
+  
 }
 
 //function to add food in stock
